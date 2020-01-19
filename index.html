@@ -1192,6 +1192,126 @@ gulp.src([&apos;./src/css/*.less&apos;,&apos;./src/css/*.css&apos;])
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/28/jscode1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="钟翼帆">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tx3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FunnyNut的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/28/jscode1/" itemprop="url">JS作业一</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-28T17:51:23+08:00">
+                2018-12-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br></pre></td><td class="code"><pre><span class="line">// 练习1 </span><br><span class="line">//求数组的和</span><br><span class="line"></span><br><span class="line">var  a = [2,3,5]</span><br><span class="line"></span><br><span class="line">var sum = function(array)&#123;</span><br><span class="line"></span><br><span class="line">    var s = 0</span><br><span class="line">    for(var i = 0;i &lt; array.length; i++)&#123;</span><br><span class="line">        var n = array[i];</span><br><span class="line">        s = s + n  </span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    return s </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 练习 2</span><br><span class="line">// 返回一个数的绝对值</span><br><span class="line">// 函数定义是</span><br><span class="line">var abs = function(n)&#123;</span><br><span class="line">    if(n &lt; 0 )&#123;</span><br><span class="line">         return -n</span><br><span class="line">    &#125;</span><br><span class="line">    else&#123;</span><br><span class="line">         return n</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">// 练习 3</span><br><span class="line">// 参数是一个只包含数字的 array</span><br><span class="line">// 求 array 中所有数字的平均数</span><br><span class="line"></span><br><span class="line">var avg = function(array)&#123;</span><br><span class="line">    var n = array.length </span><br><span class="line">    return sum(array)/n </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 练习 4</span><br><span class="line">// 参数是一个只包含数字的 array</span><br><span class="line">// 求 array 中最小的数字</span><br><span class="line">// 函数定义是</span><br><span class="line"></span><br><span class="line">var min = function(array)&#123;</span><br><span class="line">    var m = array[0]</span><br><span class="line">    for(var i = 0; i &lt; array.length; i++)&#123;</span><br><span class="line">         var n = array[i]</span><br><span class="line">         if(n &lt; m)&#123;</span><br><span class="line">             m = n </span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">  return m </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">// 练习 5</span><br><span class="line">/*</span><br><span class="line">参数是一个数字 n</span><br><span class="line">返回以下序列的结果</span><br><span class="line">1 - 2 + 3 - 4 + 5 ... n</span><br><span class="line">*/</span><br><span class="line">var sum1= function(n)&#123;</span><br><span class="line">        var s = 0</span><br><span class="line">        for( var i = 0;i &lt;= n;i++)&#123;</span><br><span class="line">            if(n%2==0)&#123;</span><br><span class="line">                s-=i</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                s+=i</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        return s </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">    练习 6</span><br><span class="line">实现 apply 函数</span><br><span class="line">参数如下</span><br><span class="line">op 是 string 类型, 值是 &apos;+&apos; &apos;-&apos; &apos;*&apos; &apos;/&apos; 其中之一</span><br><span class="line">a b 分别是 2 个数字</span><br><span class="line">根据 op 对 a b 运算并返回结果(加减乘除)</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">var apply = function(op,a,b)&#123;</span><br><span class="line">    if(op == &apos;+&apos;)&#123;</span><br><span class="line">        return a + b</span><br><span class="line">    &#125;</span><br><span class="line">    if(op == &apos;-&apos;)&#123;</span><br><span class="line">        return a - b</span><br><span class="line">    &#125;</span><br><span class="line">    if(op == &apos;*&apos;)&#123;</span><br><span class="line">        return a * b</span><br><span class="line">    &#125;</span><br><span class="line">    if(op == &apos;/&apos;)&#123;</span><br><span class="line">        return a / b</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/*</span><br><span class="line">练习 7</span><br><span class="line">实现 applyList 函数</span><br><span class="line">op 是 &apos;+&apos; &apos;-&apos; &apos;*&apos; &apos;/&apos; 其中之一</span><br><span class="line">oprands 是一个只包含数字的 array</span><br><span class="line">根据 op 对 oprands 中的元素进行运算并返回结果</span><br><span class="line">例如, 下面的调用返回 -4</span><br><span class="line">var n = applyList(&apos;-&apos;, [3, 4, 2, 1])</span><br><span class="line">log(n)</span><br><span class="line">// 结果是 4, 用第一个数字减去所有的数字</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">var applyList = function(op,orands)&#123;</span><br><span class="line">    var result = orands[0]</span><br><span class="line"></span><br><span class="line">    for(var i = 1;i&lt;orands.length;i++)&#123;</span><br><span class="line">       result =   apply(op,result,orands[i])</span><br><span class="line">    &#125;</span><br><span class="line">    return result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1482,7 +1602,7 @@ gulp.src([&apos;./src/css/*.less&apos;,&apos;./src/css/*.css&apos;])
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

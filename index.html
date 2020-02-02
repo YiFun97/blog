@@ -862,7 +862,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/05/13/canvas/" itemprop="url">初识canvas</a></h1>
+                <a class="post-title-link" href="/2019/05/13/canvas/" itemprop="url">canvas写一个画板</a></h1>
         
 
         <div class="post-meta">
@@ -1001,7 +1001,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/20/php/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/proto/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="钟翼帆">
@@ -1020,7 +1020,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/20/php/" itemprop="url">php笔记</a></h1>
+                <a class="post-title-link" href="/2019/01/17/proto/" itemprop="url">原型和原型链</a></h1>
         
 
         <div class="post-meta">
@@ -1032,8 +1032,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-20T13:02:55+08:00">
-                2019-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T23:09:41+08:00">
+                2019-01-17
               </time>
             
 
@@ -1042,6 +1042,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1071,21 +1093,30 @@
 
       
         
-          <h1 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h1><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
-<li><strong>标识：</strong></li>
-</ul>
-<p>服务器为每个会话创建唯一ID</p>
-<ul>
-<li><strong>时效：</strong></li>
-</ul>
-<p>会话在请求之间的时间间隔</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/20/php/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
+          
+            <h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123; name: &apos; yifan&apos; &#125;</span><br></pre></td></tr></table></figure>
+<p>a其实有一个toString方法，然而<code>a.toString()</code>并没有在a对象里面声明，那么它怎么能够使用？</p>
+<p>因为每个对象，都有一个隐藏的属性<code>__proto__</code>,这个属性引用了<code>object.prototype</code>，这里存放了所有对象的<strong>公用属性</strong>，而这个就是<strong>原型</strong></p>
+<p>每个对象创建出来，都默认指向这个原型，而<strong>object.prototype</strong>也有一个<code>__proto__</code>,并指向<strong>null</strong></p>
+<p>但是如果所有对象都存着这些属性的话太浪费内存了，于是JS不单独给每一个对象存这些属性，而是让每一个对象用一个隐藏的属性<code>__proto__</code>来指向原型以节省空间。这样的引用就形成了一个链，即<strong>原型链</strong>。</p>
+<h3 id="Number两种声明方式"><a href="#Number两种声明方式" class="headerlink" title="Number两种声明方式"></a>Number两种声明方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var b = 1</span><br><span class="line">var c = new Number(2)</span><br><span class="line">b.toString() //&quot;1&quot;</span><br><span class="line">c.toString() //&quot;2&quot;</span><br></pre></td></tr></table></figure>
+<p>b创建出来后，本来<code>b.toString()</code>方法是不存在的，因为b不是对象</p>
+<p>但是JS想了个妙计 临时转换 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">当b.toString时 </span><br><span class="line">会产生 </span><br><span class="line">temp = new Number&#123;b&#125; </span><br><span class="line">temp.toString </span><br><span class="line">然后返回值给b.toString</span><br></pre></td></tr></table></figure>
+<p>两种Number的声明方式是有一点差别的：</p>
+<p>前者直接在栈里存放值，调用的时候会声明临时对象</p>
+<p>后者与object的存储方式一样，栈内存存地址，堆内存存值。</p>
+<h3 id="接着说原型链"><a href="#接着说原型链" class="headerlink" title="接着说原型链"></a>接着说原型链</h3><blockquote>
+<p>每个对象，都有一个隐藏的属性<code>__proto__</code>,这个属性引用了<code>object.prototype</code>，这里存放了所有对象的<strong>公用属性</strong>，而这个就是<strong>原型</strong></p>
+</blockquote>
+<p><strong>number</strong>里面也有一个<code>__proto__</code>，引用了<strong>number.prototype</strong>，不同是<code>__proto__</code>里的<code>__proto__</code>并没有指向null，而是指向<strong>object.prototype</strong></p>
+<p>如图：<img src="D:\hexo\source\images\number.png" alt=""></p>
+<p>这是因为Number一些公有属性，例如<code>toFixed()</code>，<code>valueof()</code>等，除了Number其他数据类型并不可以使用，但是Object的公有属性，是其他的数据类型都可以使用。</p>
+<p><strong>Boolean，String</strong>也是同理，但是null和undefined比较特殊，它们<strong>没有原型</strong>，而且null是<strong>原型链</strong>中的最后一个环节。</p>
+<p><img src="D:\hexo\source\images\yuanxingl.PNG" alt=""></p>
+<h3 id="重要公式"><a href="#重要公式" class="headerlink" title="重要公式"></a>重要公式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var 对象 = new 函数()</span><br><span class="line">对象.__proto__ === 对象的构造函数.prototype</span><br><span class="line"></span><br><span class="line">// 比如</span><br><span class="line">var n = new Number()</span><br><span class="line">n.__proto__ === Number.prototype  //true</span><br><span class="line">Number.__proto__ === Function.prototype //true    //因为 Number 是 Function 的实例</span><br><span class="line">//同理</span><br><span class="line">var o = new Object()</span><br><span class="line">o.__proto__ === Object.prototype   //true</span><br><span class="line">Object.__proto__ === Function.prototype    //true  // 因为 Object 是 Function 的实例</span><br><span class="line">Object.prototype.__proto__ === null     //true</span><br><span class="line"></span><br><span class="line">var f = new Function()</span><br><span class="line">f.__proto__ === Function.prototype     //true  </span><br><span class="line">Function.__proto__ === Function.prototype   //true // 因为 Function 是 Function 的实例</span><br></pre></td></tr></table></figure>
+
+          
         
       
     </div>
@@ -1788,7 +1819,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1810,7 +1841,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

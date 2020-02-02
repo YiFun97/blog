@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="原型链," />
 
 
 
@@ -79,17 +79,21 @@
 
 
 
-<meta name="description" content="会话特点 标识：  服务器为每个会话创建唯一ID  时效：  会话在请求之间的时间间隔">
+<meta name="description" content="原型和原型链1var a = &amp;#123; name: &amp;apos; yifan&amp;apos; &amp;#125; a其实有一个toString方法，然而a.toString()并没有在a对象里面声明，那么它怎么能够使用？ 因为每个对象，都有一个隐藏的属性__proto__,这个属性引用了object.prototype，这里存放了所有对象的公用属性，而这个就是原型 每个对象创建出来，都默认指向这个原型，">
+<meta name="keywords" content="原型链">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php笔记">
-<meta property="og:url" content="http://yoursite.com/2019/04/20/php/index.html">
+<meta property="og:title" content="原型和原型链">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/proto/index.html">
 <meta property="og:site_name" content="钟翼帆的博客">
-<meta property="og:description" content="会话特点 标识：  服务器为每个会话创建唯一ID  时效：  会话在请求之间的时间间隔">
+<meta property="og:description" content="原型和原型链1var a = &amp;#123; name: &amp;apos; yifan&amp;apos; &amp;#125; a其实有一个toString方法，然而a.toString()并没有在a对象里面声明，那么它怎么能够使用？ 因为每个对象，都有一个隐藏的属性__proto__,这个属性引用了object.prototype，这里存放了所有对象的公用属性，而这个就是原型 每个对象创建出来，都默认指向这个原型，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-11T01:59:00.762Z">
+<meta property="og:image" content="d:/hexo/source/images/number.png">
+<meta property="og:image" content="d:/hexo/source/images/yuanxingl.PNG">
+<meta property="og:updated_time" content="2020-02-02T15:10:45.598Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php笔记">
-<meta name="twitter:description" content="会话特点 标识：  服务器为每个会话创建唯一ID  时效：  会话在请求之间的时间间隔">
+<meta name="twitter:title" content="原型和原型链">
+<meta name="twitter:description" content="原型和原型链1var a = &amp;#123; name: &amp;apos; yifan&amp;apos; &amp;#125; a其实有一个toString方法，然而a.toString()并没有在a对象里面声明，那么它怎么能够使用？ 因为每个对象，都有一个隐藏的属性__proto__,这个属性引用了object.prototype，这里存放了所有对象的公用属性，而这个就是原型 每个对象创建出来，都默认指向这个原型，">
+<meta name="twitter:image" content="d:/hexo/source/images/number.png">
 
 
 
@@ -119,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/20/php/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/17/proto/"/>
 
 
 
 
 
-  <title>php笔记 | 钟翼帆的博客</title>
+  <title>原型和原型链 | 钟翼帆的博客</title>
   
 
 
@@ -252,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/20/php/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/proto/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="钟翼帆">
@@ -269,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">php笔记</h1>
+          <h1 class="post-title" itemprop="name headline">原型和原型链</h1>
         
 
         <div class="post-meta">
@@ -281,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-20T13:02:55+08:00">
-                2019-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T23:09:41+08:00">
+                2019-01-17
               </time>
             
 
@@ -291,6 +295,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -319,91 +345,27 @@
       
 
       
-        <h1 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h1><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><ul>
-<li><strong>标识：</strong></li>
-</ul>
-<p>服务器为每个会话创建唯一ID</p>
-<ul>
-<li><strong>时效：</strong></li>
-</ul>
-<p>会话在请求之间的时间间隔</p>
-<a id="more"></a>
-<hr>
-<p><strong>session_start()</strong></p>
-<ul>
-<li>开始会话</li>
-<li>可以使用$_session 数组存取数据</li>
-</ul>
-<blockquote>
-<p>数据可以是变量，常量，对象</p>
+        <h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123; name: &apos; yifan&apos; &#125;</span><br></pre></td></tr></table></figure>
+<p>a其实有一个toString方法，然而<code>a.toString()</code>并没有在a对象里面声明，那么它怎么能够使用？</p>
+<p>因为每个对象，都有一个隐藏的属性<code>__proto__</code>,这个属性引用了<code>object.prototype</code>，这里存放了所有对象的<strong>公用属性</strong>，而这个就是<strong>原型</strong></p>
+<p>每个对象创建出来，都默认指向这个原型，而<strong>object.prototype</strong>也有一个<code>__proto__</code>,并指向<strong>null</strong></p>
+<p>但是如果所有对象都存着这些属性的话太浪费内存了，于是JS不单独给每一个对象存这些属性，而是让每一个对象用一个隐藏的属性<code>__proto__</code>来指向原型以节省空间。这样的引用就形成了一个链，即<strong>原型链</strong>。</p>
+<h3 id="Number两种声明方式"><a href="#Number两种声明方式" class="headerlink" title="Number两种声明方式"></a>Number两种声明方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var b = 1</span><br><span class="line">var c = new Number(2)</span><br><span class="line">b.toString() //&quot;1&quot;</span><br><span class="line">c.toString() //&quot;2&quot;</span><br></pre></td></tr></table></figure>
+<p>b创建出来后，本来<code>b.toString()</code>方法是不存在的，因为b不是对象</p>
+<p>但是JS想了个妙计 临时转换 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">当b.toString时 </span><br><span class="line">会产生 </span><br><span class="line">temp = new Number&#123;b&#125; </span><br><span class="line">temp.toString </span><br><span class="line">然后返回值给b.toString</span><br></pre></td></tr></table></figure>
+<p>两种Number的声明方式是有一点差别的：</p>
+<p>前者直接在栈里存放值，调用的时候会声明临时对象</p>
+<p>后者与object的存储方式一样，栈内存存地址，堆内存存值。</p>
+<h3 id="接着说原型链"><a href="#接着说原型链" class="headerlink" title="接着说原型链"></a>接着说原型链</h3><blockquote>
+<p>每个对象，都有一个隐藏的属性<code>__proto__</code>,这个属性引用了<code>object.prototype</code>，这里存放了所有对象的<strong>公用属性</strong>，而这个就是<strong>原型</strong></p>
 </blockquote>
-<p>session_destory()</p>
-<ul>
-<li>销毁会话</li>
-<li>客户端主动放弃当前会话</li>
-</ul>
-<h1 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h1><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><ul>
-<li>每页记录数</li>
-</ul>
-<p><code>select * from bookinfo  limit 5,3</code>  </p>
-<blockquote>
-<p>数字5的意思是从第六条数据表开始  数字3意思是往下查三条信息</p>
-</blockquote>
-<p>  limit (3-1)*4 ,4 </p>
-<hr>
-<h1 id="thinkphp框架学习笔记"><a href="#thinkphp框架学习笔记" class="headerlink" title="thinkphp框架学习笔记"></a>thinkphp框架学习笔记</h1><h3 id="什么是框架"><a href="#什么是框架" class="headerlink" title="什么是框架"></a>什么是框架</h3><ul>
-<li>半成品</li>
-<li>制定了一系列的要求与规则，开发者细读要求与规则</li>
-<li>将业务流程在框架的规则下去实现</li>
-</ul>
-<h3 id="开发模式"><a href="#开发模式" class="headerlink" title="开发模式"></a>开发模式</h3><p><strong>MVC</strong> （ M：model操控数据库的类 V: 显示数据的文件 C ：实现业务流程控制）</p>
-<ul>
-<li>所有请求发送给控制器，控制器处理请求根据处理结果的不同可以响应不同的视图</li>
-<li>控制在处理过程中需要访问数据库，则可以调用模型中的方法</li>
-<li>视图不能直接访问模型中的数据</li>
-</ul>
-<p><strong>部署环境</strong> 将框架文件放到项目下</p>
-<ol>
-<li><strong>直接访问入口文件</strong></li>
-</ol>
-<p>会在APP文件夹中生成相应的目录 controller.model.view.conf</p>
-<ol start="2">
-<li><strong>创建控制器</strong></li>
-</ol>
-<p>在控制器目录下创建一个类</p>
-<blockquote>
-<ul>
-<li>命名：类名开头字母大写，并跟上controller再加上class, </li>
-<li>创建好类之后，添加当前控制器类对Controller类的继承,</li>
-<li>创建好控制器类之后可以在当前类中编写方法用于提供给请求方向。Localhost/项目名称/index.php/home/控制器名称(不要Controller)/方法名称</li>
-<li>当请求到达指定控制器方法时，该方法中的代码将被执行</li>
-</ul>
-</blockquote>
-<h3 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h3><ul>
-<li>在view目录下创建一个与控制器对应名称的目录，大小写一致</li>
-<li>在目录中创建模板(html)文件，名称无要求</li>
-</ul>
-<h3 id="控制器的相关方法"><a href="#控制器的相关方法" class="headerlink" title="控制器的相关方法"></a>控制器的相关方法</h3><ul>
-<li>指定视图显示的方法</li>
-</ul>
-<p><code>$this-&gt;display(&quot;视图名称&quot;)</code></p>
-<p>获取请求参数</p>
-<p><code>$str = I(&quot;post.xxx&quot;);</code></p>
-<h3 id="创建模型"><a href="#创建模型" class="headerlink" title="创建模型"></a>创建模型</h3><p>模型类 ，一般用于操作数据库的表中的数据，类中包含操作表中数据的相关方法</p>
-<p>与创建控制器类似，命名以表名+Model，同时类名必须继承\Think\Model类</p>
-<p>$ m =M(“数据表名”);</p>
-<p>创建一个模型对象（实例化）<br>调用框架提供的相关方法</p>
-<p>add().save().delete().select().find()</p>
-<h1 id="单页面与多页面"><a href="#单页面与多页面" class="headerlink" title="单页面与多页面"></a>单页面与多页面</h1><h3 id="单页面spa"><a href="#单页面spa" class="headerlink" title="单页面spa"></a>单页面spa</h3><p>只有一张web页面应用</p>
-<h3 id="多页面mpa"><a href="#多页面mpa" class="headerlink" title="多页面mpa"></a>多页面mpa</h3><p>多页面跳转需要刷新所以资源，每个公共资源需选择性重新加载页面</p>
-<p>跳转</p>
-<blockquote>
-<p>使用window.location.href = “.index.html” 进行页面间的跳转</p>
-</blockquote>
-<p>数据传递</p>
-<blockquote>
-<p>可以使用path?account = “123” &amp; </p>
-</blockquote>
+<p><strong>number</strong>里面也有一个<code>__proto__</code>，引用了<strong>number.prototype</strong>，不同是<code>__proto__</code>里的<code>__proto__</code>并没有指向null，而是指向<strong>object.prototype</strong></p>
+<p>如图：<img src="D:\hexo\source\images\number.png" alt=""></p>
+<p>这是因为Number一些公有属性，例如<code>toFixed()</code>，<code>valueof()</code>等，除了Number其他数据类型并不可以使用，但是Object的公有属性，是其他的数据类型都可以使用。</p>
+<p><strong>Boolean，String</strong>也是同理，但是null和undefined比较特殊，它们<strong>没有原型</strong>，而且null是<strong>原型链</strong>中的最后一个环节。</p>
+<p><img src="D:\hexo\source\images\yuanxingl.PNG" alt=""></p>
+<h3 id="重要公式"><a href="#重要公式" class="headerlink" title="重要公式"></a>重要公式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var 对象 = new 函数()</span><br><span class="line">对象.__proto__ === 对象的构造函数.prototype</span><br><span class="line"></span><br><span class="line">// 比如</span><br><span class="line">var n = new Number()</span><br><span class="line">n.__proto__ === Number.prototype  //true</span><br><span class="line">Number.__proto__ === Function.prototype //true    //因为 Number 是 Function 的实例</span><br><span class="line">//同理</span><br><span class="line">var o = new Object()</span><br><span class="line">o.__proto__ === Object.prototype   //true</span><br><span class="line">Object.__proto__ === Function.prototype    //true  // 因为 Object 是 Function 的实例</span><br><span class="line">Object.prototype.__proto__ === null     //true</span><br><span class="line"></span><br><span class="line">var f = new Function()</span><br><span class="line">f.__proto__ === Function.prototype     //true  </span><br><span class="line">Function.__proto__ === Function.prototype   //true // 因为 Function 是 Function 的实例</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -418,6 +380,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/原型链/" rel="tag"># 原型链</a>
+          
+        </div>
       
 
       
@@ -438,8 +406,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/13/canvas/" rel="prev" title="初识canvas">
-                初识canvas <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/13/canvas/" rel="prev" title="canvas写一个画板">
+                canvas写一个画板 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -521,7 +489,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -543,7 +511,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -576,7 +544,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#会话"><span class="nav-number">1.</span> <span class="nav-text">会话</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特点"><span class="nav-number">1.0.1.</span> <span class="nav-text">特点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分页"><span class="nav-number">2.</span> <span class="nav-text">分页</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">2.0.1.</span> <span class="nav-text">概念</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#thinkphp框架学习笔记"><span class="nav-number">3.</span> <span class="nav-text">thinkphp框架学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是框架"><span class="nav-number">3.0.1.</span> <span class="nav-text">什么是框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发模式"><span class="nav-number">3.0.2.</span> <span class="nav-text">开发模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#视图"><span class="nav-number">3.0.3.</span> <span class="nav-text">视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制器的相关方法"><span class="nav-number">3.0.4.</span> <span class="nav-text">控制器的相关方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建模型"><span class="nav-number">3.0.5.</span> <span class="nav-text">创建模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单页面与多页面"><span class="nav-number">4.</span> <span class="nav-text">单页面与多页面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#单页面spa"><span class="nav-number">4.0.1.</span> <span class="nav-text">单页面spa</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多页面mpa"><span class="nav-number">4.0.2.</span> <span class="nav-text">多页面mpa</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型和原型链"><span class="nav-number">1.</span> <span class="nav-text">原型和原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Number两种声明方式"><span class="nav-number">1.1.</span> <span class="nav-text">Number两种声明方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接着说原型链"><span class="nav-number">1.2.</span> <span class="nav-text">接着说原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要公式"><span class="nav-number">1.3.</span> <span class="nav-text">重要公式</span></a></li></ol></li></ol></div>
             
 
           </div>

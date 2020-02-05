@@ -1001,6 +1001,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/20/es5extend/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YiFan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tx3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YiFan's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/20/es5extend/" itemprop="url">ES5和ES6对象的继承</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-20T00:02:05+08:00">
+                2019-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="ES5和ES6的继承"><a href="#ES5和ES6的继承" class="headerlink" title="ES5和ES6的继承"></a>ES5和ES6的继承</h2><h3 id="ES5中的prototype"><a href="#ES5中的prototype" class="headerlink" title="ES5中的prototype"></a>ES5中的prototype</h3><p>弄明白了原型和原型链， 就基本上完全理解了JavaScript中对象的继承。</p>
+<p><strong>为什么要用Prototype实现继承呢？</strong></p>
+<p>给一个Person构造函数增加一个方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Person (name, age) &#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">  this.age = age; </span><br><span class="line">  this.hello = function() &#123;</span><br><span class="line">    console.log(&apos;你好&apos; + this.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实例化Person构造函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var p1 = new Person(&apos;老王&apos;, 15)</span><br><span class="line">var p2 = new Person(&apos;李二&apos;, 18)</span><br><span class="line">p1.hello(); //你好老王</span><br><span class="line">p2.hello(); //你好李二</span><br></pre></td></tr></table></figure>
+<p>看似没有问题，但是这样会有严重的性能问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(p1.hello === p2.hello); //false</span><br></pre></td></tr></table></figure>
+<p>p1和p2两个的函数体其实是一样的但是控制台又显示false，说明每new一个对象就会多生成一个相同的hello方法</p>
+<p>所以我们要用Prototype来实现，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function Person (name, age) &#123;</span><br><span class="line">      this.name = name;</span><br><span class="line">      this.age = age; </span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.hello = function()&#123;</span><br><span class="line">	  console.log(&apos;你好&apos; + this.name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样实例化两个对象里的hello方法就会指向同一个内存地址</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var p1 = new Person(&apos;老王&apos;, 15)</span><br><span class="line">var p2 = new Person(&apos;李二&apos;, 18)</span><br><span class="line">p1.hello(); //你好老王</span><br><span class="line">p2.hello(); //你好李二</span><br><span class="line">console.log(p1.hello === p2.hello); //true</span><br></pre></td></tr></table></figure>
+<h4 id="用prototype实现继承"><a href="#用prototype实现继承" class="headerlink" title="用prototype实现继承"></a>用prototype实现继承</h4><p>新建一个Man构造函数继承Person</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function Man () &#123;</span><br><span class="line">    this.gender = &apos;男&apos;</span><br><span class="line">&#125;</span><br><span class="line">//我们将man的原型对象指向了Person的实例对象</span><br><span class="line">Man.prototype = new Person(&apos;赵三&apos;,20)</span><br><span class="line"></span><br><span class="line">//Man.prototype = new Person(&apos;赵三&apos;,20) 会导致Man.prototype的constructor指向Person</span><br><span class="line">//然而constructor的定义是要指向原型属性对应的构造函数的，Man.prototype是Man构造函数的原型，</span><br><span class="line">//所以应加一句纠正：</span><br><span class="line">Man.prototype.constructor = Man</span><br><span class="line"></span><br><span class="line">var m = new Man()</span><br><span class="line">m.hello() //你好赵三</span><br></pre></td></tr></table></figure>
+<h4 id="用call实现继承"><a href="#用call实现继承" class="headerlink" title="用call实现继承"></a>用call实现继承</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">//父类</span><br><span class="line">function Person (name, age) &#123;</span><br><span class="line">      this.name = name;</span><br><span class="line">      this.age = age; </span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.hello = function()&#123;</span><br><span class="line">	  console.log(&apos;你好&apos; + this.name);</span><br><span class="line">&#125;</span><br><span class="line">//子类</span><br><span class="line">function Programmer(name, age, lang)&#123;</span><br><span class="line">	Person.call(this, name, age) //使用call实现继承</span><br><span class="line">	this.lang = lang</span><br><span class="line">&#125;</span><br><span class="line">Programmer.prototype.howlang = function()&#123;</span><br><span class="line">	  console.log(&apos;我使用&apos; + this.lang);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var p2 = new Programmer(&apos;王五&apos;, 22, &apos;javascript&apos;)</span><br></pre></td></tr></table></figure>
+<p>但是<code>call</code>能继承自己属性和方法， 而不能继承父类的属性和方法，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p2.howlang()   // 我使用javascript</span><br><span class="line">//使用父类方法报错</span><br><span class="line">p2.hello() //Uncaught TypeError: p2.hello is not a function</span><br></pre></td></tr></table></figure>
+<h4 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h4><p>组合继承（combination inheritance），有时候也叫做伪经典继承，指的是将原型链和借用构造函数的技术组合到一块，从而发挥二者之长的一种继承模式。其背后的思路是使用原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承。这样，既通过在原型上定义方法实现了函数复用，又能够保证每个实例都有它自己的属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">//父类构造函数</span><br><span class="line">function Person (name, age) &#123;</span><br><span class="line">      this.name = name;</span><br><span class="line">      this.age = age; </span><br><span class="line">&#125;</span><br><span class="line">//父类方法</span><br><span class="line">Person.prototype.hello = function()&#123;</span><br><span class="line">	  console.log(&apos;你好&apos; + this.name);</span><br><span class="line">&#125;</span><br><span class="line">//子类构造函数</span><br><span class="line">function Programmer(name, age, lang)&#123;</span><br><span class="line">	 //使用call实现继承</span><br><span class="line">	Person.call(this, name, age)</span><br><span class="line">	this.lang = lang</span><br><span class="line">&#125;</span><br><span class="line">//继承方法</span><br><span class="line">Programmer.prototype = new Person();</span><br><span class="line">Programmer.prototype.constructor = Programmer;</span><br><span class="line">//子类自己的方法</span><br><span class="line">Programmer.prototype.howlang = function()&#123;</span><br><span class="line">	  console.log(&apos;我使用&apos; + this.lang);</span><br><span class="line">&#125;</span><br><span class="line">var pg1 = new Programmer(&apos;小帆&apos;, 23, &apos;javascript&apos;)</span><br><span class="line"></span><br><span class="line">pg1.hello()  //你好小帆</span><br><span class="line">pg1.howlang() //我使用javascript</span><br></pre></td></tr></table></figure>
+<h3 id="ES6中如何实现继承"><a href="#ES6中如何实现继承" class="headerlink" title="ES6中如何实现继承"></a>ES6中如何实现继承</h3><p>ES6 提供了更接近传统语言的写法，引入了 Class（类）这个概念，作为对象的模板。通过<code>class</code>关键字，可以定义类。</p>
+<p>基本上，ES6 的<code>class</code>可以看作只是一个语法糖，它的绝大部分功能，ES5 都可以做到，新的<code>class</code>写法只是让对象原型的写法更加清晰、更像面向对象编程的语法而已。上面的代码用 ES6 的<code>class</code>改写，就是下面这样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">class Person &#123;</span><br><span class="line">  constructor(name, age) &#123;</span><br><span class="line">    this.name = name</span><br><span class="line">    this.age = age</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">  hello()&#123;</span><br><span class="line">	  console.log(&apos;你好&apos; + this.name);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Programmer extends Person &#123;</span><br><span class="line">  constructor(name, age, lang) &#123;</span><br><span class="line">      super(name)</span><br><span class="line"> 	  this.lang = lang</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  howlang()&#123;</span><br><span class="line">	  console.log(&apos;我使用&apos; + this.lang);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let p = new Programmer(&apos;小帆&apos;, 23, &apos;javascript&apos;)</span><br><span class="line">p.howlang() //我使用javascript</span><br><span class="line">p.hello() //你好小帆</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/proto/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1603,168 +1767,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/13/es6_01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YiFan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tx3.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YiFan's BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/13/es6_01/" itemprop="url">学习ES6 - 01</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-13T14:22:41+08:00">
-                2019-01-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web前端/" itemprop="url" rel="index">
-                    <span itemprop="name">web前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="let-const"><a href="#let-const" class="headerlink" title="let const"></a>let const</h2><p><strong>作用：与var类似, 用于声明一个变量。</strong></p>
-<p><strong>let和var的区别：</strong></p>
-<ul>
-<li><p>在块作用域内有效(只要有{}出现 则只在该{}范围内生效)</p>
-</li>
-<li><p>不能重复声明</p>
-</li>
-<li><p>不会预处理, 不存在提升</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let res = 10;</span><br><span class="line">   let res = 10; // 报错</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><strong>const</strong>：</p>
-<p>定义一个常量</p>
-<blockquote>
-<p>该常量不能被修改</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const a = 12</span><br><span class="line">a = 5  //报错 Uncaught TypeError: Assignment to constant variable.</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/13/es6_01/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1819,7 +1821,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

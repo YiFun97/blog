@@ -1001,6 +1001,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/29/react-note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YiFan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tx3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YiFan's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/29/react-note/" itemprop="url">React.js学习笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-29T23:27:05+08:00">
+                2019-01-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web前端/" itemprop="url" rel="index">
+                    <span itemprop="name">web前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近学习了《React.js小书》作者是胡子大哈，边学习边做笔记，以下为笔记内容及扩展</p>
+<ul>
+<li>《React.js小书》作者：胡子大哈</li>
+<li>链接：<a href="http://huziketang.mangojuice.top/books/react/" target="_blank" rel="noopener">http://huziketang.mangojuice.top/books/react/</a></li>
+</ul>
+<h3 id="JSX"><a href="#JSX" class="headerlink" title="JSX"></a>JSX</h3><p>React.createElement会构建一个js对象来描述HTML结构信息，包括标签名、属性、子元素等。<strong>所谓JSX其实就是javascript对象</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Header extends Component &#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h1 className=&apos;title&apos;&gt;React 小书&lt;/h1&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Header /&gt;,</span><br><span class="line">  document.getElementById(&apos;root&apos;)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>上面的代码会编译成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Header extends Component &#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">    return (</span><br><span class="line">     React.createElement(</span><br><span class="line">        &quot;div&quot;,</span><br><span class="line">        null,</span><br><span class="line">        React.createElement(</span><br><span class="line">          &quot;h1&quot;,</span><br><span class="line">          &#123; className: &apos;title&apos; &#125;,</span><br><span class="line">          &quot;React 小书&quot;</span><br><span class="line">        )</span><br><span class="line">      )</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ReactDOM.render(</span><br><span class="line">  React.createElement(Header, null), </span><br><span class="line">  document.getElementById(&apos;root&apos;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p><code>ReactDOM.render</code> 功能就是把组件渲染并且构造 DOM 树，然后插入到页面上某个特定的元素上（在这里是 id 为 <code>root</code> 的 <code>div</code> 元素）</p>
+<h3 id="组件的render-方法"><a href="#组件的render-方法" class="headerlink" title="组件的render()方法"></a>组件的render()方法</h3><p>React.js 中一切皆组件，用 React.js 写的其实就是 React.js 组件。我们在编写 React.js 组件的时候，一般都需要继承 React.js 的 <code>Component</code>（还有别的编写组件的方式我们后续会提到）。一个组件类必须要实现一个 <code>render</code> 方法，这个 <code>render</code> 方法必须要返回一个 JSX 元素</p>
+<p>可以在 <code>render</code> 函数内部根据不同条件返回不同的 JSX：例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">render () &#123;</span><br><span class="line">  const isGoodWord = true</span><br><span class="line">  return (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">      &lt;h1&gt;</span><br><span class="line">        React 小书</span><br><span class="line">        &#123;isGoodWord</span><br><span class="line">          ? &lt;strong&gt; is good&lt;/strong&gt;</span><br><span class="line">          : null</span><br><span class="line">        &#125;</span><br><span class="line">      &lt;/h1&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>表达式插入里面返回 <code>null</code> ，那么 React.js 会什么都不显示，相当于忽略了该表达式插入。</p>
+<p>这样就相当于在 <code>isGoodWord</code> 为 <code>true</code> 的时候显示 <code>is good</code>，否则就隐藏。</p>
+<h3 id="事件监听"><a href="#事件监听" class="headerlink" title="事件监听"></a>事件监听</h3><p>在 React.js 不需要手动调用浏览器原生的 <code>addEventListener</code> 进行事件监听。React.js 帮我们封装好了一系列的 <code>on*</code> 的属性，当你需要为某个元素监听某个事件的时候，只需要简单地给它加上 <code>on*</code> 就可以了。而且你不需要考虑不同浏览器兼容性的问题，React.js 都帮我们封装好这些细节了。</p>
+<blockquote>
+<p>这些事件属性名都必须要用驼峰命名法。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Title extends Component &#123;</span><br><span class="line">  handleClickOnTitle () &#123;</span><br><span class="line">    console.log(&apos;Click on title.&apos;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render () &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;h1 onClick=&#123;this.handleClickOnTitle&#125;&gt;React 小书&lt;/h1&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>没有经过特殊处理的话，这些 <code>on*</code> 的事件监听只能用在普通的 HTML 的标签上，而不能用在组件标签上。</p>
+<h4 id="event对象"><a href="#event对象" class="headerlink" title="event对象"></a>event对象</h4><p>和普通浏览器一样，事件监听函数会被自动传入一个 <code>event</code> 对象，这个对象和普通的浏览器 <code>event</code> 对象所包含的方法和属性都基本一致。这个 <code>event</code> 对象是符合 W3C 标准的，它具有类似于<code>event.stopPropagation</code>、<code>event.preventDefault</code> 这种常用的方法</p>
+<h4 id="关于事件中的this"><a href="#关于事件中的this" class="headerlink" title="关于事件中的this"></a>关于事件中的this</h4><p>一般在某个类的实例方法里面的 <code>this</code> 指的是这个实例本身。但是你在上面的 <code>handleClickOnTitle</code> 中把 <code>this</code> 打印出来，你会看到 <code>this</code> 是 <code>null</code> 或者 <code>undefined</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleClickOnTitle (e) &#123;</span><br><span class="line">    console.log(this) // =&gt; null or undefined</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>如果要在事件函数当中使用当前的实例，可以手动地将实例方法 <code>bind</code> 到当前实例上再传入给 React.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Title extends Component &#123;</span><br><span class="line">  handleClickOnTitle (e) &#123;</span><br><span class="line">    console.log(this)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render () &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;h1 onClick=&#123;this.handleClickOnTitle.bind(this)&#125;&gt;React 小书&lt;/h1&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种 <code>bind</code> 模式在 React.js 的事件监听当中非常常见，<code>bind</code> 不仅可以帮我们把事件监听方法中的 <code>this</code> 绑定到当前组件实例上；还可以帮助我们在在渲染列表元素的时候，把列表元素传入事件监听函数当中——这个将在以后的章节提及。</p>
+<h3 id="组件的-state-和-setState"><a href="#组件的-state-和-setState" class="headerlink" title="组件的 state 和 setState"></a>组件的 state 和 setState</h3><p>一个组件的显示形态是可以由它数据状态和配置参数决定的。React.js 的<code>state</code>就是用来存储这种可变化的状态的。</p>
+<p><code>setState</code>方法由父类 Component 所提供。<strong>当我们调用这个函数的时候，React.js 会更新组件的状态 state ，并且重新调用 render 方法，然后再把 render 方法所渲染的最新的内容显示到页面上。</strong></p>
+<p>当你调用 <code>setState</code> 的时候，<em>React.js 并不会马上修改 state</em>。而是把这个对象放到一个更新队列里面，稍后才会从队列当中把新的状态提取出来合并到 <code>state</code> 当中，然后再触发组件更新</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">handleClickOnLikeButton () &#123;</span><br><span class="line">    this.setState(&#123; count: 0 &#125;) // =&gt; this.state.count 还是 undefined</span><br><span class="line">    this.setState(&#123; count: this.state.count + 1&#125;) // =&gt; undefined + 1 = NaN</span><br><span class="line">    this.setState(&#123; count: this.state.count + 2&#125;) // =&gt; NaN + 2 = NaN</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码的运行结果并不能达到我们的预期，我们希望 <code>count</code> 运行结果是 <code>3</code> ，可是最后得到的是 <code>NaN</code>。但是这种后续操作依赖前一个 <code>setState</code> 的结果的情况并不罕见。</p>
+<p>这里就自然地引出了 <code>setState</code> 的第二种使用方式，可以接受一个函数作为参数。React.js 会把上一个 <code>setState</code> 的结果传入这个函数，你就可以使用该结果进行运算、操作，然后返回一个对象作为更新 <code>state</code> 的对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleClickOnLikeButton () &#123;</span><br><span class="line">    this.setState((prevState) =&gt; &#123;</span><br><span class="line">      return &#123; count: 0 &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    this.setState((prevState) =&gt; &#123;</span><br><span class="line">    // 上一个 setState 的返回是 count 为 0，当前返回 1</span><br><span class="line">      return &#123; count: prevState.count + 1 &#125; </span><br><span class="line">    &#125;)</span><br><span class="line">    this.setState((prevState) =&gt; &#123;</span><br><span class="line">     // 上一个 setState 的返回是 count 为 1，当前返回 3</span><br><span class="line">      return &#123; count: prevState.count + 2 &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    // 最后的结果是 this.state.count 为 3</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="props"><a href="#props" class="headerlink" title="props"></a>props</h3><ul>
+<li>props是由父组件属性传到子组件的，可以是字符串、数字、对象、甚至是函数</li>
+<li>默认配置 defaultProps</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">static defaultProps = &#123;</span><br><span class="line">    likedText: &apos;取消&apos;,</span><br><span class="line">    unlikedText: &apos;点赞&apos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>props是不可变的，不可以在组件内部修改props，只能通过父组件主动更新</li>
+</ul>
+<h3 id="state-vs-props"><a href="#state-vs-props" class="headerlink" title="state vs props"></a>state vs props</h3><p><code>state</code> 的主要作用是用于组件保存、控制、修改<em>自己</em>的可变状态。<code>state</code> 在组件内部初始化，可以被组件自身修改，而外部不能访问也不能修改。你可以认为 <code>state</code> 是一个局部的、只能被组件自身控制的数据源。<code>state</code> 中状态可以通过 <code>this.setState</code> 方法进行更新，<code>setState</code> 会导致组件的重新渲染。</p>
+<p><code>props</code> 的主要作用是让使用该组件的父组件可以传入参数来配置该组件。它是外部传进来的配置参数，组件内部无法控制也无法修改。除非外部组件主动传入新的 <code>props</code>，否则组件的 <code>props</code> 永远保持不变。</p>
+<p><code>state</code> 和 <code>props</code> 有着千丝万缕的关系。它们都可以决定组件的行为和显示形态。一个组件的 <code>state</code> 中的数据可以通过 <code>props</code> 传给子组件，一个组件可以使用外部传入的 <code>props</code> 来初始化自己的 <code>state</code>。但是它们的职责其实非常明晰分明：<em><code>state</code> 是让组件控制自己的状态，<code>props</code> 是让外部对组件自己进行配置</em>。</p>
+<p><strong>一个简单的规则</strong>：尽量少地用 <code>state</code>，尽量多地用 <code>props</code>。</p>
+<p>没有 <code>state</code> 的组件叫无状态组件（stateless component），设置了 state 的叫做有状态组件（stateful component）。因为状态会带来管理的复杂性，我们尽量多地写无状态组件，尽量少地写有状态的组件。这样会降低代码维护的难度，也会在一定程度上增强组件的可复用性。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/20/es5extend/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1616,157 +1804,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/14/es6_02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YiFan">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/tx3.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YiFan's BLOG">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/14/es6_02/" itemprop="url">学习ES6 - 02</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-14T21:21:24+08:00">
-                2019-01-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/web前端/" itemprop="url" rel="index">
-                    <span itemprop="name">web前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>1.匿名函数没有参数：() 不能省略，占位作用 ：</p>
-<p>​    <code>() =&gt; 返回值</code></p>
-<p>2.只有一个参数：() 可以省略，也可以不省略 ：</p>
-<p> <code>形参 =&gt; 返回值</code></p>
-<p>3.多个参数，() 不能省略  ：</p>
-<p>  <code>( 形参, 形参) =&gt; 返回值</code></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/14/es6_02/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1821,7 +1858,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1843,7 +1880,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="原型链," />
+  <meta name="keywords" content="同源策略,跨域," />
 
 
 
@@ -79,21 +79,18 @@
 
 
 
-<meta name="description" content="原型和原型链1var a = &amp;#123; name: &amp;apos; yifan&amp;apos; &amp;#125; a其实有一个toString方法，然而a.toString()并没有在a对象里面声明，那么它怎么能够使用？ 因为每个对象，都有一个隐藏的属性__proto__,这个属性引用了object.prototype，这里存放了所有对象的公用属性，而这个就是原型 每个对象创建出来，都默认指向这个原型，">
-<meta name="keywords" content="原型链">
+<meta name="description" content="###同源策略 同源策略：是一种处于浏览器安全考虑的一种策略，同源策略只允许本域下的接口交互，不同源的客户端脚本在没有明确授权情况下，不能读写对方资源 “协议+域名+端口“三者相同 才是同源 那么是出于什么安全考虑才会引入这种机制呢？ 其实主要是用来防止 CSRF 攻击的 CSRF(Cross-site request forgery), 即跨站请求伪造，指的是黑客诱导用户点击链接，打开黑客的网站">
+<meta name="keywords" content="同源策略,跨域">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原型和原型链">
-<meta property="og:url" content="http://yoursite.com/2019/01/17/proto/index.html">
+<meta property="og:title" content="同源策略与跨域">
+<meta property="og:url" content="http://yoursite.com/2019/01/16/kuayu/index.html">
 <meta property="og:site_name" content="YiFan&#39;s BLOG">
-<meta property="og:description" content="原型和原型链1var a = &amp;#123; name: &amp;apos; yifan&amp;apos; &amp;#125; a其实有一个toString方法，然而a.toString()并没有在a对象里面声明，那么它怎么能够使用？ 因为每个对象，都有一个隐藏的属性__proto__,这个属性引用了object.prototype，这里存放了所有对象的公用属性，而这个就是原型 每个对象创建出来，都默认指向这个原型，">
+<meta property="og:description" content="###同源策略 同源策略：是一种处于浏览器安全考虑的一种策略，同源策略只允许本域下的接口交互，不同源的客户端脚本在没有明确授权情况下，不能读写对方资源 “协议+域名+端口“三者相同 才是同源 那么是出于什么安全考虑才会引入这种机制呢？ 其实主要是用来防止 CSRF 攻击的 CSRF(Cross-site request forgery), 即跨站请求伪造，指的是黑客诱导用户点击链接，打开黑客的网站">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/images/number.png">
-<meta property="og:image" content="http://yoursite.com/images/yuanxingl.PNG">
-<meta property="og:updated_time" content="2020-02-02T15:21:58.238Z">
+<meta property="og:updated_time" content="2020-03-30T07:47:06.059Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="原型和原型链">
-<meta name="twitter:description" content="原型和原型链1var a = &amp;#123; name: &amp;apos; yifan&amp;apos; &amp;#125; a其实有一个toString方法，然而a.toString()并没有在a对象里面声明，那么它怎么能够使用？ 因为每个对象，都有一个隐藏的属性__proto__,这个属性引用了object.prototype，这里存放了所有对象的公用属性，而这个就是原型 每个对象创建出来，都默认指向这个原型，">
-<meta name="twitter:image" content="http://yoursite.com/images/number.png">
+<meta name="twitter:title" content="同源策略与跨域">
+<meta name="twitter:description" content="###同源策略 同源策略：是一种处于浏览器安全考虑的一种策略，同源策略只允许本域下的接口交互，不同源的客户端脚本在没有明确授权情况下，不能读写对方资源 “协议+域名+端口“三者相同 才是同源 那么是出于什么安全考虑才会引入这种机制呢？ 其实主要是用来防止 CSRF 攻击的 CSRF(Cross-site request forgery), 即跨站请求伪造，指的是黑客诱导用户点击链接，打开黑客的网站">
 
 
 
@@ -123,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/17/proto/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/16/kuayu/"/>
 
 
 
 
 
-  <title>原型和原型链 | YiFan's BLOG</title>
+  <title>同源策略与跨域 | YiFan's BLOG</title>
   
 
 
@@ -256,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/proto/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/kuayu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YiFan">
@@ -273,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">原型和原型链</h1>
+          <h1 class="post-title" itemprop="name headline">同源策略与跨域</h1>
         
 
         <div class="post-meta">
@@ -285,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T23:09:41+08:00">
-                2019-01-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-16T21:23:12+08:00">
+                2019-01-16
               </time>
             
 
@@ -345,28 +342,39 @@
       
 
       
-        <h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var a = &#123; name: &apos; yifan&apos; &#125;</span><br></pre></td></tr></table></figure>
-<p>a其实有一个toString方法，然而<code>a.toString()</code>并没有在a对象里面声明，那么它怎么能够使用？</p>
-<p>因为每个对象，都有一个隐藏的属性<code>__proto__</code>,这个属性引用了<code>object.prototype</code>，这里存放了所有对象的<strong>公用属性</strong>，而这个就是<strong>原型</strong></p>
-<p>每个对象创建出来，都默认指向这个原型，而<strong>object.prototype</strong>也有一个<code>__proto__</code>,并指向<strong>null</strong></p>
-<p>但是如果所有对象都存着这些属性的话太浪费内存了，于是JS不单独给每一个对象存这些属性，而是让每一个对象用一个隐藏的属性<code>__proto__</code>来指向原型以节省空间。这样的引用就形成了一个链，即<strong>原型链</strong>。</p>
-<h3 id="Number两种声明方式"><a href="#Number两种声明方式" class="headerlink" title="Number两种声明方式"></a>Number两种声明方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var b = 1</span><br><span class="line">var c = new Number(2)</span><br><span class="line">b.toString() //&quot;1&quot;</span><br><span class="line">c.toString() //&quot;2&quot;</span><br></pre></td></tr></table></figure>
-<p>b创建出来后，本来<code>b.toString()</code>方法是不存在的，因为b不是对象</p>
-<p>但是JS想了个妙计 临时转换 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">当b.toString时 </span><br><span class="line">会产生 </span><br><span class="line">temp = new Number&#123;b&#125; </span><br><span class="line">temp.toString </span><br><span class="line">然后返回值给b.toString</span><br></pre></td></tr></table></figure>
-<p>两种Number的声明方式是有一点差别的：</p>
-<p>前者直接在栈里存放值，调用的时候会声明临时对象</p>
-<p>后者与object的存储方式一样，栈内存存地址，堆内存存值。</p>
-<h3 id="接着说原型链"><a href="#接着说原型链" class="headerlink" title="接着说原型链"></a>接着说原型链</h3><blockquote>
-<p>每个对象，都有一个隐藏的属性<code>__proto__</code>,这个属性引用了<code>object.prototype</code>，这里存放了所有对象的<strong>公用属性</strong>，而这个就是<strong>原型</strong></p>
-</blockquote>
-<p><strong>number</strong>里面也有一个<code>__proto__</code>，引用了<strong>number.prototype</strong>，不同是<code>__proto__</code>里的<code>__proto__</code>并没有指向null，而是指向<strong>object.prototype</strong></p>
-<p>如图：<img src="\images\number.png" alt=""></p>
-<p>这是因为Number一些公有属性，例如<code>toFixed()</code>，<code>valueof()</code>等，除了Number其他数据类型并不可以使用，但是Object的公有属性，是其他的数据类型都可以使用。</p>
-<p><strong>Boolean，String</strong>也是同理，但是null和undefined比较特殊，它们<strong>没有原型</strong>，而且null是<strong>原型链</strong>中的最后一个环节。</p>
-<p><img src="\images\yuanxingl.PNG" alt=""></p>
-<h3 id="重要公式"><a href="#重要公式" class="headerlink" title="重要公式"></a>重要公式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var 对象 = new 函数()</span><br><span class="line">对象.__proto__ === 对象的构造函数.prototype</span><br><span class="line"></span><br><span class="line">// 比如</span><br><span class="line">var n = new Number()</span><br><span class="line">n.__proto__ === Number.prototype  //true</span><br><span class="line">Number.__proto__ === Function.prototype //true    //因为 Number 是 Function 的实例</span><br><span class="line">//同理</span><br><span class="line">var o = new Object()</span><br><span class="line">o.__proto__ === Object.prototype   //true</span><br><span class="line">Object.__proto__ === Function.prototype    //true  // 因为 Object 是 Function 的实例</span><br><span class="line">Object.prototype.__proto__ === null     //true</span><br><span class="line"></span><br><span class="line">var f = new Function()</span><br><span class="line">f.__proto__ === Function.prototype     //true  </span><br><span class="line">Function.__proto__ === Function.prototype   //true // 因为 Function 是 Function 的实例</span><br></pre></td></tr></table></figure>
-
+        <p>###同源策略</p>
+<p><strong>同源策略</strong>：是一种处于浏览器安全考虑的一种策略，同源策略只允许本域下的接口交互，不同源的客户端脚本在没有明确授权情况下，不能读写对方资源</p>
+<p>“<strong>协议+域名+端口</strong>“三者相同 才是<strong>同源</strong></p>
+<p><strong>那么是出于什么安全考虑才会引入这种机制呢？</strong></p>
+<p>其实主要是用来防止 CSRF 攻击的</p>
+<p>CSRF(Cross-site request forgery), 即跨站请求伪造，指的是黑客诱导用户点击链接，打开黑客的网站，然后黑客利用用户<strong>目前的登录状态</strong>发起跨站请求</p>
+<p><strong>如何预防CSRF攻击</strong>：</p>
+<p><strong>1.利用Cookie的SameSite属性</strong></p>
+<p>在 Cookie 有一个叫SameSite的字段，</p>
+<p>可以将SameSite设置为Strict，在<code>Strict</code>模式下，浏览器完全禁止第三方请求携带Cookie</p>
+<p><strong>2.使用TOKEN</strong>：</p>
+<p>首先，浏览器向服务器发送请求时，服务器生成一个字符串，将其植入到返回的页面中。</p>
+<p>然后浏览器如果要发送请求，就必须带上这个字符串，然后服务器来验证是否合法，如果不合法则不予响应。这个字符串也就是<code>CSRF Token</code>，通常第三方站点无法拿到这个 token, 因此也就是被服务器给拒绝</p>
+<hr>
+<p>跳过CSRF，我们重新回到同源策略，怎样才能向不同域名发送AJAX请求呢？</p>
+<p>这时候就得用到跨域了</p>
+<p>跨域：由于同源策略的影响，当我们从一个域名的网页去请求另一个域名的资源时，就无法成功获取资源。如果我们要想成功获取资源，那么就要用到跨域</p>
+<h3 id="解决跨域问题"><a href="#解决跨域问题" class="headerlink" title="解决跨域问题"></a>解决跨域问题</h3><p>####JSONP</p>
+<p>JSONP之所以能够用来解决跨域方案,主要是因为 <script> 脚本拥有跨域能力</p>
+<p>实现方法：构建一个script标签，它的src属性内容为接口地址并提供一个回调函数</p>
+<p>然后接口一般会将返回的数据用函数进行包裹，浏览器端的script标签会直接运行，所以为运行对应的函数拿到返回的数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://domain/api?param1=a&amp;param2=b&amp;callback=jsonp&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function jsonp(data) &#123;</span><br><span class="line">    	console.log(data)</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<p>但JSONP只限于get请求，基本上被淘汰使用了。</p>
+<p>####CORS(跨域资源共享)</p>
+<p>CORS(Cross-origin resource sharing)用于让网页的受限资源能够被其他域名的页面访问的一种机制。</p>
+<p>通过该机制，页面能够自由地使用不同源的图片、样式、脚本、iframes以及视频。一些跨域的请求（特别是Ajax）常常会被同源策略所禁止的。跨源资源共享定义了一种方式，为的是浏览器和服务器之间能互相确认是否足够安全以至于能使用跨源请求</p>
+<p>CORS 需要浏览器和后端同时支持。</p>
+<p>浏览器会自动进行 CORS 通信，实现 CORS 通信的关键是后端。只要后端实现了 CORS，就实现了跨域。</p>
+<p>服务端设置 <code>Access-Control-Allow-Origin</code> 就可以开启 CORS。 该属性表示哪些域名可以访问资源，如果设置通配符则表示所有网站都可以访问资源</p>
+<p>####document.domain</p>
+<p>该方式只能用于<strong>二级域名相同</strong>的情况下，比如 <code>a.test.com</code> 和 <code>b.test.com</code> 适用于该方式。</p>
+<p>只需要给页面添加 <code>document.domain = &#39;test.com&#39;</code> 表示二级域名都相同就可以实现跨域</p>
+</script></p>
       
     </div>
     
@@ -383,7 +391,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/原型链/" rel="tag"># 原型链</a>
+            <a href="/tags/同源策略/" rel="tag"># 同源策略</a>
+          
+            <a href="/tags/跨域/" rel="tag"># 跨域</a>
           
         </div>
       
@@ -396,8 +406,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/16/kuayu/" rel="next" title="同源策略与跨域">
-                <i class="fa fa-chevron-left"></i> 同源策略与跨域
+              <a href="/2019/01/15/ajax/" rel="next" title="Ajax、Fetch以及Axios">
+                <i class="fa fa-chevron-left"></i> Ajax、Fetch以及Axios
               </a>
             
           </div>
@@ -406,8 +416,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/20/es5extend/" rel="prev" title="ES5和ES6对象的继承">
-                ES5和ES6对象的继承 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/17/proto/" rel="prev" title="原型和原型链">
+                原型和原型链 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -544,7 +554,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#原型和原型链"><span class="nav-number">1.</span> <span class="nav-text">原型和原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Number两种声明方式"><span class="nav-number">1.1.</span> <span class="nav-text">Number两种声明方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接着说原型链"><span class="nav-number">1.2.</span> <span class="nav-text">接着说原型链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重要公式"><span class="nav-number">1.3.</span> <span class="nav-text">重要公式</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决跨域问题"><span class="nav-number">1.</span> <span class="nav-text">解决跨域问题</span></a></li></ol></div>
             
 
           </div>

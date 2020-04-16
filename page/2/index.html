@@ -252,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/kuayu1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/16/kuayu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YiFan">
@@ -271,7 +271,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/01/16/kuayu1/" itemprop="url">同源策略与跨域</a></h1>
+                <a class="post-title-link" href="/2019/01/16/kuayu/" itemprop="url">同源策略与跨域</a></h1>
         
 
         <div class="post-meta">
@@ -363,7 +363,7 @@
 <p>这时候就得用到跨域了</p>
 <p>跨域：由于同源策略的影响，当我们从一个域名的网页去请求另一个域名的资源时，就无法成功获取资源。如果我们要想成功获取资源，那么就要用到跨域</p>
 <h3 id="解决跨域问题"><a href="#解决跨域问题" class="headerlink" title="解决跨域问题"></a>解决跨域问题</h3><p>####JSONP</p>
-<p>JSONP之所以能够用来解决跨域方案,主要是因为 <script> 脚本拥有跨域能力</p>
+<p>JSONP之所以能够用来解决跨域方案,主要是因为 <code>&lt;script&gt;</code> 脚本拥有跨域能力</p>
 <p>实现方法：构建一个script标签，它的src属性内容为接口地址并提供一个回调函数</p>
 <p>然后接口一般会将返回的数据用函数进行包裹，浏览器端的script标签会直接运行，所以为运行对应的函数拿到返回的数据</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;http://domain/api?param1=a&amp;param2=b&amp;callback=jsonp&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function jsonp(data) &#123;</span><br><span class="line">    	console.log(data)</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
@@ -377,7 +377,7 @@
 <p>####document.domain</p>
 <p>该方式只能用于<strong>二级域名相同</strong>的情况下，比如 <code>a.test.com</code> 和 <code>b.test.com</code> 适用于该方式。</p>
 <p>只需要给页面添加 <code>document.domain = &#39;test.com&#39;</code> 表示二级域名都相同就可以实现跨域</p>
-</script></p>
+
           
         
       

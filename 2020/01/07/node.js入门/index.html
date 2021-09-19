@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="node.js基础Node.js是由ECMAScript及Node 环境提供的一些附加API组成的，包括文件、网络、路径等等一些更加强大的 API 所有ECMAScript语法在Node环境中都可以使用。 在Node环境下执行代码，使用Node命令执行后缀为.js的文件即可">
+<meta name="keywords" content="node">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js基础">
+<meta property="og:url" content="http://yoursite.com/2020/01/07/node.js入门/index.html">
+<meta property="og:site_name" content="YiFan&#39;s BLOG">
+<meta property="og:description" content="node.js基础Node.js是由ECMAScript及Node 环境提供的一些附加API组成的，包括文件、网络、路径等等一些更加强大的 API 所有ECMAScript语法在Node环境中都可以使用。 在Node环境下执行代码，使用Node命令执行后缀为.js的文件即可">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-03-01T15:43:44.107Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Node.js基础">
+<meta name="twitter:description" content="node.js基础Node.js是由ECMAScript及Node 环境提供的一些附加API组成的，包括文件、网络、路径等等一些更加强大的 API 所有ECMAScript语法在Node环境中都可以使用。 在Node环境下执行代码，使用Node命令执行后缀为.js的文件即可">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/07/node.js入门/"/>
+
+
+
+
+
+  <title>Node.js基础 | YiFan's BLOG</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YiFan's BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">积累知识， 记录点滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            全部文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/07/node.js入门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YiFan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tx3.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YiFan's BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node.js基础</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-07T15:22:03+08:00">
+                2020-01-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">node.js</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="node-js基础"><a href="#node-js基础" class="headerlink" title="node.js基础"></a>node.js基础</h2><p>Node.js是由ECMAScript及Node 环境提供的一些附加API组成的，包括文件、网络、路径等等一些更加强大的 API</p>
+<p>所有ECMAScript语法在Node环境中都可以使用。</p>
+<p>在Node环境下执行代码，使用Node命令执行后缀为.js的文件即可</p>
+<a id="more"></a>
+<h3 id="node-js模块"><a href="#node-js模块" class="headerlink" title="node.js模块"></a>node.js模块</h3><p>Node.js规定一个JavaScript文件就是一个模块，模块内部定义的变量和函数默认情况下在外部无法得到</p>
+<p>l模块内部可以使用exports对象进行成员导出，<br>使用require方法导入其他模块。</p>
+<p>模块成员导出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> // a.js</span><br><span class="line"></span><br><span class="line"> // 在模块内部定义变量</span><br><span class="line"></span><br><span class="line">letversion = 1.0;</span><br><span class="line"></span><br><span class="line">// 在模块内部定义方法</span><br><span class="line"></span><br><span class="line">constsayHi = name =&gt; `您好, $&#123;name&#125;`;</span><br><span class="line"></span><br><span class="line">// 向模块外部导出数据</span><br><span class="line"></span><br><span class="line">exports.version= version;</span><br><span class="line"></span><br><span class="line">exports.sayHi= sayHi;</span><br></pre></td></tr></table></figure>
+<p>模块成员的导入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> // b.js</span><br><span class="line"></span><br><span class="line"> // 在b.js模块中导入模块a</span><br><span class="line"></span><br><span class="line">leta = require(&apos;./b.js&apos;);</span><br><span class="line"></span><br><span class="line"> // 输出b模块中的version变量</span><br><span class="line"></span><br><span class="line">console.log(a.version);</span><br><span class="line"></span><br><span class="line"> // 调用b模块中的sayHi方法并输出其返回值</span><br><span class="line"></span><br><span class="line">console.log(a.sayHi(&apos;xdsda&apos;));</span><br></pre></td></tr></table></figure>
+<p>模块成员导出的另一种方式</p>
+<p>module.exports.version=version;</p>
+<p>module.exports.sayHi= sayHi;</p>
+<p>exports是module.exports的别名(地址引用关系)，导出对象最终以module.exports为准</p>
+<h3 id="系统模块"><a href="#系统模块" class="headerlink" title="系统模块"></a>系统模块</h3><p>Node运行环境提供的API. 因为这些API都是以模块化的方式进行开发的, 所以我们又称Node运行环境提供的API为系统模块</p>
+<p>####读取文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const  fs = require(&apos;fs&apos;)</span><br><span class="line"></span><br><span class="line">// 2通过模块内部的readfile读取文件内容</span><br><span class="line"></span><br><span class="line">fs.readFile(&apos;./01hello.js&apos;,&apos;utf-8&apos;,(err,doc)=&gt;&#123;</span><br><span class="line"></span><br><span class="line">    //如果文件读取出错 err是一个对象 包含错误信息</span><br><span class="line"></span><br><span class="line">    //如果文件读取正确 err是Null</span><br><span class="line"></span><br><span class="line">    console.log(err)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="写入文件"><a href="#写入文件" class="headerlink" title="写入文件"></a>写入文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;);</span><br><span class="line"></span><br><span class="line">fs.writeFile(&apos;./demo.txt&apos;, &apos;即将要写入的内容&apos;, err =&gt; &#123;</span><br><span class="line"></span><br><span class="line">    if (err != null) &#123;</span><br><span class="line"></span><br><span class="line">        console.log(err);</span><br><span class="line"></span><br><span class="line">        return;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    console.log(&apos;文件内容写入成功&apos;);</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="系统模块path路径操作"><a href="#系统模块path路径操作" class="headerlink" title="系统模块path路径操作"></a>系统模块path路径操作</h4><p>为什么要进行路径拼接 ？</p>
+<ul>
+<li>不同操作系统的路径分隔符不统一</li>
+<li>/public/uploads/avatar</li>
+<li>Windows上是 \  /</li>
+<li>Linux上是 /</li>
+</ul>
+<h5 id="路径拼接语法"><a href="#路径拼接语法" class="headerlink" title="路径拼接语法"></a>路径拼接语法</h5><blockquote>
+<p>path.join(‘路径’,’路径’,…)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">const finalpath = path.join(&apos;public&apos;,&apos;uploads&apos;,&apos;avatar&apos;)</span><br><span class="line">console.log(finalpath)//public/uploads/avatar</span><br></pre></td></tr></table></figure>
+<h4 id="相对路径VS绝对路径"><a href="#相对路径VS绝对路径" class="headerlink" title="相对路径VS绝对路径"></a>相对路径VS绝对路径</h4><ul>
+<li>大多数情况下使用绝对路径，因为相对路径有时候相对的是命令行工具的当前工作目录</li>
+<li>在读取文件或者设置文件路径时都会选择绝对路径</li>
+<li>使用__dirname获取当前文件所在的绝对路径</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const fs = require(&apos;fs&apos;)</span><br><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">//__dirname获取文件的当前路径</span><br><span class="line">fs.readFile(path.join(__dirname,&apos;01hello.js&apos;),&apos;utf-8&apos;,(err,doc)=&gt;&#123;</span><br><span class="line">    console.log(err)</span><br><span class="line">    console.log(doc)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="第三方模块"><a href="#第三方模块" class="headerlink" title="第三方模块"></a>第三方模块</h3><p>别人写好的、具有特定功能的、我们能直接使用的模块即第三方模块，由于第三方模块通常都是由多个文件组成并且被放置在一个文件夹中，所以又名包。</p>
+<p>####获取第三方模块</p>
+<ul>
+<li>下载：npm install 模块名称</li>
+<li>卸载：npm unintall package 模块名称</li>
+</ul>
+<h4 id="第三方模块-Gulp"><a href="#第三方模块-Gulp" class="headerlink" title="第三方模块 Gulp"></a>第三方模块 Gulp</h4><blockquote>
+<p>基于node平台开发的前端构建工具</p>
+<p>将机械化操作编写成任务, 想要执行机械化操作时执行一个命令行命令任务就能自动执行了</p>
+<p>用机器代替手工，提高开发效率。</p>
+</blockquote>
+<p>#####Gulp使用</p>
+<p>1.使用npm install gulp下载gulp库文件</p>
+<p>2.在项目根目录下建立gulpfile.js文件</p>
+<p>3.重构项目的文件夹结构 src目录放置源代码文件 dist目录放置构建后文件</p>
+<p>4.在gulpfile.js文件中编写任务.</p>
+<p>5.在命令行工具中执行gulp任务</p>
+<p>#####Gulp中提供的方法</p>
+<pre><code>gulp.src()：获取任务要处理的文件
+
+gulp.dest()：输出文件
+
+gulp.task()：建立gulp任务
+
+gulp.watch()：监控文件的变化
+
+const gulp = require(&apos;gulp&apos;)
+
+const htmlmin = require(&apos;gulp-htmlmin&apos;);
+
+const fileinclude = require(&apos;gulp-file-include&apos;);
+
+const less = require(&apos;gulp-less&apos;);
+
+const csso = require(&apos;gulp-csso&apos;);
+
+//使用gulp.task建立任务
+
+//1.任务的名称
+
+//2.任务的回调函数
+
+gulp.task(&apos;first&apos;,()=&gt;{
+
+console.log(&apos;第一个gulp任务执行了&apos;)
+
+//1.使用gulp.src获取要处理的文件
+
+gulp.src(&apos;./src/css/base.css&apos;)
+
+.pipe(gulp.dest(&apos;dist/css&apos;))
+
+})
+
+//html
+
+//1html文件中代码的压缩操作
+
+//2抽取html公共代码
+
+gulp.task(&apos;htmlmin&apos;, () =&gt; {
+
+gulp.src(&apos;./src/*.html&apos;)
+
+.pipe(fileinclude())
+
+// 压缩html文件中的代码
+
+.pipe(htmlmin({ collapseWhitespace: true }))
+
+.pipe(gulp.dest(&apos;dist&apos;))
+
+})
+
+gulp.task(&apos;cssmin&apos;,() =&gt; {
+
+gulp.src([&apos;./src/css/*.less&apos;,&apos;./src/css/*.css&apos;])
+
+.pipe(less())
+
+// 将css代码进行压缩
+
+.pipe(csso())
+
+// 将处理的结果进行输出
+
+.pipe(gulp.dest(&apos;dist/css&apos;))
+
+})
+</code></pre><p>### </p>
+<h3 id="模板引擎"><a href="#模板引擎" class="headerlink" title="模板引擎"></a>模板引擎</h3><p>npm install art-template安装</p>
+<p>建立一个app.js文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const  template = require(&apos;art-template&apos;)</span><br><span class="line">const path = require(&apos;path&apos;)</span><br><span class="line">const views = path.join(__dirname,&apos;index.art&apos;)</span><br><span class="line"></span><br><span class="line">// template方法是用来拼接字符串的</span><br><span class="line">// 2. 要在模板中显示的数据 对象类型</span><br><span class="line">// 返回拼接好的字符串</span><br><span class="line"> const html = template(views,&#123;</span><br><span class="line">  name:&apos;老王&apos;,</span><br><span class="line">  age:20</span><br><span class="line">&#125;)</span><br><span class="line">console.log(html)</span><br></pre></td></tr></table></figure>
+<!--more-->
+<p>再建立一个index.art</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line"></span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line"></span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">​    &#123;&#123;name&#125;&#125;</span><br><span class="line"></span><br><span class="line">​    &#123;&#123;age&#125;&#125;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>最后在命令行打印出来结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=&quot;en&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">        老王</span><br><span class="line">        20</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><p>art-template同时支持两种模板语法：标准语法和原始语法。</p>
+<p>标准语法可以让模板更容易读写，原始语法具有强大的逻辑处理能力。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标准语法：&#123;&#123; 数据 &#125;&#125;</span><br><span class="line"></span><br><span class="line">原始语法：&lt;%=数据 %&gt;</span><br></pre></td></tr></table></figure>
+<p>####原文输出</p>
+<p>如果数据中携带HTML标签，默认模板引擎不会解析标签，会将其转义后输出。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标准语法：&#123;&#123;@ 数据 &#125;&#125;</span><br><span class="line"></span><br><span class="line">原始语法：&lt;%-数据 %&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="条件判断"><a href="#条件判断" class="headerlink" title="条件判断"></a>条件判断</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 标准语法 --&gt;</span><br><span class="line"></span><br><span class="line"> &#123;&#123;if 条件&#125;&#125; ... &#123;&#123;/if&#125;&#125;</span><br><span class="line"></span><br><span class="line"> &#123;&#123;if v1&#125;&#125; ... &#123;&#123;else if v2&#125;&#125; ... &#123;&#123;/if&#125;&#125;</span><br><span class="line"></span><br><span class="line"> &lt;!-- 原始语法 --&gt;</span><br><span class="line"></span><br><span class="line"> &lt;% **if** (value) &#123; %&gt; ... &lt;% &#125; %&gt;</span><br><span class="line"></span><br><span class="line"> &lt;% **if** (v1) &#123; %&gt; ... &lt;% &#125; **else** **if** (v2) &#123; %&gt; ... &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a><strong>循环</strong></h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标准语法：&#123;&#123;each 数据&#125;&#125; &#123;&#123;/each&#125;&#125;</span><br><span class="line"></span><br><span class="line">原始语法：&lt;% for() &#123; %&gt; &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 标准语法 --&gt;</span><br><span class="line"></span><br><span class="line"> &#123;&#123;each target&#125;&#125;</span><br><span class="line"></span><br><span class="line">   &#123;&#123;$index&#125;&#125; &#123;&#123;$value&#125;&#125;</span><br><span class="line"></span><br><span class="line"> &#123;&#123;/each&#125;&#125;</span><br><span class="line"></span><br><span class="line"> &lt;!-- 原始语法 --&gt;</span><br><span class="line"></span><br><span class="line"> &lt;% for(var i = 0; i &lt; target.length; i++)&#123; %&gt;</span><br><span class="line"></span><br><span class="line">   &lt;%= i %&gt; &lt;%= target[i] %&gt;</span><br><span class="line"></span><br><span class="line"> &lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="子模板"><a href="#子模板" class="headerlink" title="子模板"></a>子模板</h4><p>使用子模板可以将网站公共区块(头部、底部)抽离到单独的文件中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">标准语法：&#123;&#123;include &apos;模板&apos;&#125;&#125;</span><br><span class="line"></span><br><span class="line">原始语法：&lt;%include(&apos;模板&apos;) %&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 标准语法 --&gt;</span><br><span class="line"></span><br><span class="line">&#123;&#123;include &apos;./header.art&apos;&#125;&#125;</span><br><span class="line"></span><br><span class="line">&lt;!-- 原始语法 --&gt;</span><br><span class="line"></span><br><span class="line">&lt;% include(&apos;./header.art&apos;) %&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="模板继承"><a href="#模板继承" class="headerlink" title="模板继承"></a>模板继承</h4><p>使用模板继承可以将网站HTML骨架抽离到单独的文件中，其他页面模板可以继承骨架文件。</p>
+<p><strong>模板继承示例</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!doctype html&gt;</span><br><span class="line"> &lt;html&gt;</span><br><span class="line">     &lt;head&gt;</span><br><span class="line">         &lt;meta charset=&quot;utf-8&quot;&gt;</span><br><span class="line">         &lt;title&gt;HTML骨架模板&lt;/title&gt;</span><br><span class="line">         &#123;&#123;block &apos;head&apos;&#125;&#125;&#123;&#123;/block&#125;&#125;</span><br><span class="line">     &lt;/head&gt;</span><br><span class="line">     &lt;body&gt;</span><br><span class="line">         &#123;&#123;block &apos;content&apos;&#125;&#125;&#123;&#123;/block&#125;&#125;</span><br><span class="line">     &lt;/body&gt;</span><br><span class="line"> &lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--index.art 首页模板--&gt;</span><br><span class="line"></span><br><span class="line">&#123;&#123;extend &apos;./layout.art&apos;&#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123;block &apos;head&apos;&#125;&#125; &lt;link rel=&quot;stylesheet&quot; href=&quot;custom.css&quot;&gt; &#123;&#123;/block&#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123;block &apos;content&apos;&#125;&#125; &lt;p&gt;This is just an awesome page.&lt;/p&gt; &#123;&#123;/block&#125;&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="模板配置"><a href="#模板配置" class="headerlink" title="模板配置"></a>模板配置</h4><p>1.向模板中导入变量 template.defaults.imports.变量名 = 变量值;</p>
+<p>2.设置模板根目录 template.defaults.root = 模板目录</p>
+<p>3.设置模板默认后缀 template.defaults.extname = ‘.art’</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag"># node</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/12/react-code2/" rel="next" title="《React.js小书》代码练习2">
+                <i class="fa fa-chevron-left"></i> 《React.js小书》代码练习2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/08/Nodeweb/" rel="prev" title="node创建web服务器">
+                node创建web服务器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/tx3.jpg"
+                alt="YiFan" />
+            
+              <p class="site-author-name" itemprop="name">YiFan</p>
+              <p class="site-description motion-element" itemprop="description">地球上最后一个EMO男孩</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#node-js基础"><span class="nav-number">1.</span> <span class="nav-text">node.js基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#node-js模块"><span class="nav-number">1.1.</span> <span class="nav-text">node.js模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统模块"><span class="nav-number">1.2.</span> <span class="nav-text">系统模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#写入文件"><span class="nav-number">1.2.1.</span> <span class="nav-text">写入文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统模块path路径操作"><span class="nav-number">1.2.2.</span> <span class="nav-text">系统模块path路径操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#路径拼接语法"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">路径拼接语法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相对路径VS绝对路径"><span class="nav-number">1.2.3.</span> <span class="nav-text">相对路径VS绝对路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方模块"><span class="nav-number">1.3.</span> <span class="nav-text">第三方模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第三方模块-Gulp"><span class="nav-number">1.3.1.</span> <span class="nav-text">第三方模块 Gulp</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板引擎"><span class="nav-number">1.4.</span> <span class="nav-text">模板引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法"><span class="nav-number">1.4.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件判断"><span class="nav-number">1.4.2.</span> <span class="nav-text">条件判断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#循环"><span class="nav-number">1.4.3.</span> <span class="nav-text">循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#子模板"><span class="nav-number">1.4.4.</span> <span class="nav-text">子模板</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板继承"><span class="nav-number">1.4.5.</span> <span class="nav-text">模板继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#模板配置"><span class="nav-number">1.4.6.</span> <span class="nav-text">模板配置</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YiFan</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
